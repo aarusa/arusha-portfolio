@@ -1,11 +1,3 @@
-/*------------------------------------------------------------------
-Project:  ComingSoon
-Version:  
-Last change:  
-Assigned to:  Bach Le
-Primary use:  
--------------------------------------------------------------------*/
-
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -17,8 +9,8 @@ Primary use:
 }
 
 @font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/Poppins/Poppins-Bold.ttf'); 
+  font-family: Arusha;
+  src: url('../fonts/Poppins/Arusha.ttf'); 
 }
 
 @font-face {
@@ -34,6 +26,11 @@ Primary use:
 @font-face {
   font-family: Lato-Bold;
   src: url('../fonts/Lato/Lato-Bold.ttf'); 
+}
+
+@font-face {
+  font-family: Arusha;
+  src: url('../fonts/Skywalks.ttf'); 
 }
 
 
@@ -250,7 +247,7 @@ Primary use:
 /*//////////////////////////////////////////////////////////////////
 [ L-Text >= 26 ]*/
 .l1-txt1 {
-  font-family: Poppins-Bold;
+  font-family: Arusha;
   font-size: 50px;
   line-height: 1.1;
   color: #fff;
