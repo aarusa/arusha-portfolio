@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arusha Shahi | Portfolio</title>
+    <meta name="description" content="Portfolio of a creative full-stack developer and designer, showcasing innovative digital experiences and solutions.">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="#" class="logo">Arusha.</a>
+            </div>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="#work" class="nav-link">Projects</a></li>
+                    <!-- <li><a href="#about" class="nav-link">About</a></li> -->
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scroll</span>
+            <span class="scroll-line"></span>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="section-label">Portfolio</div>
+                <h1 class="hero-title">Creative Designer & Developer</h1>
+                <p class="hero-intro">Crafting digital experiences that blend elegant design with technology. Specializing in user-centered design, data-driven systems, and scalable architectures.</p>
+                <div class="hero-cta">
+                    <a href="#work" class="cta-button">Selected Works</a>
+                    <a href="#contact" class="cta-link">Contact <span class="arrow">→</span></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="work">
+        <div class="work-header">
+            <h2>Selected Works</h2>
+            <div class="work-filters">
+                <button class="filter-btn active" data-category="all">All Projects</button>
+                <button class="filter-btn" data-category="development">Development</button>
+                <button class="filter-btn" data-category="design">Design</button>
+                <button class="filter-btn" data-category="data">Data</button>
+            </div>
+        </div>
+
+        <div class="project-grid">
+            <article class="project-card featured" data-category="development">
+                <div class="project-content">
+                    <div class="project-info">
+                        <h3>Resolvit</h3>
+                        <p>A smart issue-tracking app to log system problems, document solutions, and build a searchable knowledge base for future fixes.</p>
+                        <div class="project-meta">
+                            <span class="project-category">Development</span>
+                            <a href="pages/case-study-resolvit.html" class="project-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <a href="pages/case-study-resolvit.html">
+                            <img src="images/resolvix.webp" alt="Resolvix">
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card" data-category="design">
+                <div class="project-content">
+                    <div class="project-info">
+                        <h3>SwiftServe</h3>
+                        <p>User-focused money transfer app with secure payments, real-time alerts, and an intuitive, streamlined mobile interface.</p>
+                        <div class="project-meta">
+                            <span class="project-category">Design</span>
+                            <a href="pages/case-study-swiftserve.html" class="project-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <a href="pages/case-study-swiftserve.html">
+                            <img src="images/swiftserve.webp" alt="SwiftServe">
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card large" data-category="data">
+                <div class="project-content">
+                    <div class="project-info">
+                        <h3>InsightEdge</h3>
+                        <p>Interactive data visualization platform with real-time analytics and customizable reporting features.</p>
+                        <div class="project-meta">
+                            <span class="project-category">Data Analysis</span>
+                            <a href="pages/case-study-insightedge.html" class="project-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <a href="pages/case-study-insightedge.html">
+                            <img src="images/dashboard.webp" alt="InsightEdge">
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <!-- <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-text">
+                <span class="section-label">About</span>
+                <h2 class="about-heading">
+                    <span class="heading-line">Creative Developer</span>
+                    <span class="heading-line">Based in NYC</span>
+                </h2>
+                <p class="about-intro">Creating meaningful digital experiences through code and design, with a focus on elegant interactions and thoughtful user experiences.</p>
+                
+                <div class="experience-grid">
+                    <div class="experience-item">
+                        <span class="experience-number">5+</span>
+                        <span class="experience-label">Years of Experience</span>
+                    </div>
+                    <div class="experience-item">
+                        <span class="experience-number">50+</span>
+                        <span class="experience-label">Projects Completed</span>
+                    </div>
+                </div>
+
+                <div class="skills">
+                    <div class="skill-category">
+                        <div class="skill-header">
+                            <span class="skill-icon">⚡</span>
+                            <h3>Development</h3>
+                        </div>
+                        <ul>
+                            <li>React.js</li>
+                            <li>Node.js</li>
+                            <li>Python</li>
+                            <li>MongoDB</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-header">
+                            <span class="skill-icon">✨</span>
+                            <h3>Design</h3>
+                        </div>
+                        <ul>
+                            <li>UI/UX Design</li>
+                            <li>Figma</li>
+                            <li>Adobe XD</li>
+                            <li>Prototyping</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="visual-element"></div>
+                <div class="visual-accent"></div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <h2>Let's Create Something</h2>
+            <p class="contact-intro">Have an interesting project? Let's bring it to life</p>
+            <div class="contact-links">
+                <a href="mailto:shahiarusha.com" class="contact-link">
+                    <span class="link-text">Email</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://au.linkedin.com/in/shahiarusha" class="contact-link" target="_blank">
+                    <span class="link-text">LinkedIn</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://github.com/aarusa" class="contact-link" target="_blank">
+                    <span class="link-text">GitHub</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Arusha. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#work">Work</a>
+                <!-- <a href="#about">About</a> -->
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
