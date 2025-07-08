@@ -1,77 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="p:domain_verify" content="a0cd9d355a702eba946e065d50da59be"/>
-  <title>Arusha Shahi | Creative Designer</title>
-  <link href="main.bundle.css" rel="stylesheet" type="text/css">
-  <link href="css/custom.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga&amp;display=swap" rel="stylesheet">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-  <link rel="manifest" href="favicon/site.webmanifest">
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#777777">
-  <meta name="msapplication-TileColor" content="#999999">
-  <meta name="theme-color" content="#999999">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arusha - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-  <body>
-<header class="fixed-top ">
-  <div class="navbar"><a class="navbar-brand" href="index.html"> 
-    <p>A r u s h a </p>
-    <!-- <img class="default" alt="Arusha Shahi" src="images/logo.svg"> -->
-    <!-- <img class="inverted" alt="Arusha Shahi" src="images/logo-white.svg"> -->
-  </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"><span class="toggle-label">Menu</span><span class="toggle-label-close">Close</span><span class="toggle-icon"><span class="line"></span><span class="line"></span></span></button>
-  </div>
-  <ul id="nav">
-    <li class="nav-item active"><a class="nav-link" href="index.html">home</a></li>
-    <li class="nav-item dropdown">
-      <a class="dropdown-item" href="pages/projects.html">projects</a>
-    </li>
-  </ul>
-</header>
-    <main>
-      <div class="glide slider">
-        <div class="glide__track" data-glide-el="track">
-          <ul class="glide__slides">
-
-            <li class="glide__slide invert">
-              <div class="jumbotron jumbotron-fluid vh-100 d-flex align-items-end">
-                <div class="bg o-2" style="background-image:url(images/mindfulme/mindfulme.png)"></div>
-                <div class="container-fluid py-6"><a class="tilt no-link" href="pages/portfolio/mindfulme.html">
-                    <h6>A UX Case Study</h6>
-                    <h1 class="massive"> <span class="d-block">Mindful</span><span class="d-block">Me! </span></h1></a></div>
-              </div>
-            </li>
-            
-          </ul>
-        </div>
-        <div class="glide__bullets" data-glide-el="controls[nav]">
-          <div class="glide__bullet" data-glide-dir="=0">1</div>
-          <!-- <div class="glide__bullet" data-glide-dir="=1">2</div> -->
-          <div class="glide__bullet total">1</div>
-        </div>
-      </div>
-    </main>
-    <footer class="fixed-bottom alt-footer">
-      <div class="container-fluid p-5">
-        <div class="row">
-          <div class="col-sm-6 offset-sm-3 copy text-center">2024 &copy; Arusha Shahi. All rights reserved</div>
-          <div class="col-sm-3 text-right">
-            <div class="social"><a class="trigger" href="#">Follow</a>
-              <ul class="social-nav">
-                <!-- <li> <a href="#">Instagram</a></li> -->
-                <li> <a href="https://www.linkedin.com/in/aarusa/" target="_blank">LinkedIn</a></li>
-                <!-- <li> <a href="#">Dribble</a></li> -->
-              </ul>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ARUSHA</div>
+            <div class="nav-center">
+                <a href="#work">WORK</a>
+                <a href="#about">ABOUT</a>
+                <a href="#contact">CONTACT</a>
             </div>
-          </div>
+            <div class="copyright">®2025</div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Arusha Shahi</h1>
+                <p class="hero-description">Melbourne-based designer, developer, and data analyst, focusing on user-first solutions through design, code, and data insights.</p>
+            </div>
+        </section>
+
+        <section id="work">
+            <div class="work-container">
+                <h2>Selected work</h2>
+                <div class="work-grid">
+                    <article class="work-item">
+                        <div class="work-image">
+                            <img src="images/dog-grooming.jpg" alt="Dog Grooming Booking App">
+                        </div>
+                        <div class="work-info">
+                            <h3>Dog Grooming Booking App</h3>
+                            <p>DEVELOPMENT</p>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-image">
+                            <img src="images/digital.webp" alt="AI Nutritional Recommendation System">
+                        </div>
+                        <div class="work-info">
+                            <h3>AI Nutritional Recommendation System</h3>
+                            <p>BACKEND DEVELOPMENT</p>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-image">
+                            <img src="images/dustbins.jpg" alt="IED Detection System">
+                        </div>
+                        <div class="work-info">
+                            <h3>IED Detection System</h3>
+                            <p>MACHINE LEARNING & COMPUTER VISION</p>
+                        </div>
+                    </article>
+
+                    <article class="work-item">
+                        <div class="work-image">
+                            <img src="images/mindfulme.png" alt="Mobile App">
+                        </div>
+                        <div class="work-info">
+                            <h3>Mindful Me</h3>
+                            <p>UX/UI DESIGN</p>
+                        </div>
+                    </article>
+                </div>
+                <!-- <div class="see-all-container">
+                    <a href="#" class="see-all">see them all</a>
+                </div> -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-cta">
+                <h2>Let's talk</h2>
+                <a href="#contact" class="footer-button">Get in Touch</a>
+                <div class="availability">Available For Work</div>
+            </div>
+            
+            <div class="footer-contact">
+                <p class="contact-link">Email Address</p>
+                <a href="mailto:shahiarusha@gmail.com" class="contact-link">shahiarusha@gmail.com</a>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-credit">
+                    <!-- <p>Designed & Developed</p>
+                    <p>by Arusha Shahi</p> -->
+                </div>
+                <div class="footer-social">
+                    <a href="#" target="_blank">Linkedin</a>
+                    <a href="#" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">Instagram</a>
+                </div>
+                <div class="footer-copyright">
+                    <!-- <p>All rights reserved,</p>
+                    <p>ARUSHA ©2025</p> -->
+                </div>
+            </div>
         </div>
-      </div>
     </footer>
-    <script src="main.bundle.js"></script>
-  </body>
+
+    <script src="script.js"></script>
+</body>
 </html>
