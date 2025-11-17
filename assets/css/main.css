@@ -1,0 +1,826 @@
+/*-----------------------------------------------------
+Table of Contents
+
+1. General Styles
+2. Blocks & Pages
+	# About
+	# Blog List
+	# Blog Post
+	# Contact
+	# CTA
+	# Featured Works
+	# Footer
+	# Hero
+	# Navigation
+	# Portfolio
+	# Single Project
+------------------------------------------------------*/
+
+/*-----------------------------------------------------
+1. General Styles
+------------------------------------------------------*/
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+body {
+	font-family: Poppins, sans-serif;
+	font-size: 100%;
+	line-height: 1.5;
+}
+
+a {
+	text-decoration: none;
+	transition: all .2s ease-in-out;
+}
+
+.btn {
+	border-radius: 27.5px;
+	display: inline-block;
+	font-family: Montserrat, sans-serif;
+	font-size: .75rem;
+	font-weight: 600;
+	height: 55px;
+	letter-spacing: 2.5px;
+	line-height: 55px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 220px;
+}
+
+.contact-form input,
+.contact-form textarea {
+	border: none;
+	outline: none;
+}
+
+.contact-form input {
+	margin-bottom: 30px;
+}
+
+.contact-form input::placeholder,
+.contact-form input,
+.contact-form textarea::placeholder {
+	font-family: Montserrat, sans-serif;
+	font-size: .8rem;
+	letter-spacing: .3px;
+}
+
+.contact-form input[name=name],
+.contact-form input[name=email],
+.contact-form input[name=business], 
+.contact-form input[name=phone-number] {
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 20px;
+	width: 48%;
+}
+
+.contact-form input[name=name],
+.contact-form input[name=business] {
+	margin-right: 4%;
+}
+
+.contact-form textarea {
+	height: 200px;
+	padding: 25px;
+	width: 100%;
+}
+
+.contact-form textarea {
+	font-family: Montserrat, sans-serif;
+	font-size: .875rem;
+	line-height: 1.6;
+}
+
+.contact-form textarea::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.contact-form input[type=submit] {
+	cursor: pointer;
+	font-family: Montserrat, sans-serif;
+	float: right;
+	font-size: .6875rem;
+	font-weight: 500;
+	height: 50px;
+	letter-spacing: 3px;
+	line-height: 50px;
+	margin: 23px 0 0 0;
+	text-transform: uppercase;
+	transition: all .2s linear;
+	width: 220px;
+}
+
+.container {
+	max-width: 1170px;
+	margin: auto;
+}
+
+.clearfix {
+	clear: both;
+}
+
+.img-cover  {
+    display: block;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/*-----------------------------------------------------
+2. Blocks & Pages
+------------------------------------------------------*/
+
+/* =============== # About =============== */
+
+.about .intro {
+	font-size: 3rem;
+	font-weight: 400;
+	line-height: 1.4;
+	margin: 140px 50px 140px 0;
+}
+
+.about-heading {
+	font-size: 2rem;
+	font-weight: 400;
+	text-transform: capitalize;
+	margin-bottom: 60px;
+	border-left: 4px solid #ff6f61;
+	padding-left: 28px;
+}
+
+.services {
+	margin-bottom: 100px;
+}
+
+.services-item {
+	align-items: center;
+	display: flex;
+	float: left;
+	width: 28%;
+}
+
+.services-item:nth-of-type(2) {
+	margin: 0 3%;
+}
+
+.service-icon {
+	align-items: center;
+	border-radius: 50%;
+	display: flex;
+	font-size: 1.7rem;
+	justify-content: center;
+	height: 64px;
+	width: 64px;
+}
+
+.services-item .content h3 {
+	font-size: 1.5rem;
+	font-weight: 400;
+	letter-spacing: .2px;
+	margin: 22px 0 16px 0;
+	text-transform: capitalize;
+}
+
+.services-item li {
+	font-size: 1rem;
+	font-weight: 300;
+	list-style: none;
+	margin-bottom: 12px;
+	text-transform: capitalize;
+}
+
+.team-member {
+	float: left;
+	height: 390px;
+	position: relative;
+	width: 33.333%;
+}
+
+.team-member .overlay {
+	left: 0;
+	height: 100%;
+	opacity: 0;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	transition: all .3s linear;
+	width: 100%;
+}
+
+.team-member .overlay .info {
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.team-member:hover .overlay {
+	cursor: pointer;
+	opacity: 1;
+}
+
+.team-member .overlay .info h2 {
+	font-size: 1.3125rem;
+	font-weight: 400;
+	margin-bottom: 5px;
+	text-transform: capitalize;
+}
+
+.team-member .overlay .info h3 {
+	font-size: .875rem;
+	font-weight: 300;
+	letter-spacing: .1px;
+	text-transform: capitalize;
+}
+
+/* =============== # Blog List =============== */
+
+.blog {
+	margin-bottom: 140px;
+}
+
+.blog .container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.blog .blog-item .entry-thumbnail {
+	height: 470px;
+}
+
+.blog .blog-item {
+	width: 48.5%;
+}
+
+.blog .blog-item:nth-of-type(odd) {
+	margin: 0 3% 62px 0;
+}
+
+.blog .blog-item:nth-of-type(7){
+	margin-bottom: 0;
+}
+
+.entry-category {
+	display: block;
+	font-size: 1rem;
+	font-weight: 400;
+	letter-spacing: .4px;
+	text-transform: capitalize;
+}
+
+.blog .entry-category {
+	margin: 22px 0 6px 0;
+}
+
+.blog .entry-title {
+	font-size: 1.5rem;
+	font-weight: 400;
+	line-height: 1.4;
+	text-transform: capitalize;
+}
+
+/* =============== # Blog Post =============== */
+
+
+.blog-post .container {
+	position: relative;
+}
+
+.blog-post .entry-header {
+	margin: 56px auto 49px auto;
+	text-align: center;
+	width: 51%;
+}
+
+.blog-post .entry-title {
+	font-size: 2.6rem;
+	font-weight: 400;
+	line-height: 1.3;
+	margin: 18px 0 18px 0;
+	text-transform: capitalize;
+}
+
+.blog-post .entry-category {
+	font-size: 1.1rem;
+}
+
+.entry-date {
+	font-size: .9rem;
+}
+
+.blog-post .entry-thumbnail {
+	height: 600px;
+	margin-bottom: 67px;
+	width: 100%;
+}
+
+.entry-content p {
+	font-size: 1.1rem;
+	font-weight: 300;
+	line-height: 1.9;
+	margin: 0 auto 24px auto;
+	width: 51%;
+}
+
+.entry-content .post-img {
+	height: 500px;
+	margin: 68px auto;
+	width: 74%;
+}
+
+.share-links {
+	margin: 46px auto 90px auto;
+	text-align: center;
+	width: 51%;
+}
+
+.share-links li  {
+	display: inline-block;
+	list-style: none;
+}
+
+.share-links li a {
+	border-radius: 50%;
+	display: block;
+	font-size: .875rem;
+	height: 50px;
+	line-height: 50px;
+	width: 50px;
+}
+
+.share-links li:nth-of-type(2) {
+	margin: 0 10px;
+}
+
+.comments,
+.leave-comment {
+	width: 51%;
+}
+
+.comments {
+	margin: 0 auto 84px auto;
+}
+
+.leave-comment {
+	margin: 0 auto 150px auto;
+}
+
+.comments .heading,
+.leave-comment .heading {
+	font-size: 1.5rem;
+	font-weight: 400;
+	margin-bottom: 40px;
+	text-transform: capitalize;
+}
+
+.comment {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 50px;
+	padding-bottom: 43px;
+	position: relative;
+}
+
+.comment:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.comment .avatar {
+	float: left;
+	height: 110px;
+	margin-right: 30px;
+	width: 110px;
+}
+
+.comment .avatar img {
+	border-radius: 50%;
+}
+
+.comment .content {
+	float: right;
+	width: calc(100% - 140px);
+}
+
+.comment .name {
+	font-size: 1.25rem;
+	font-weight: 400;
+	margin-bottom: 3px;
+	text-transform: capitalize;
+}
+
+.comment .publication-date {
+	font-size: .75rem;
+	font-weight: 400;
+	letter-spacing: .2px;
+}
+
+.comment p {
+	font-size: .9rem;
+	font-weight: 300;
+	letter-spacing: .1px;
+	line-height: 1.8;
+	margin-top: 12px;
+}
+
+.comment .reply {
+	font-size: .6875rem;
+	font-weight: 500;
+	letter-spacing: 1.5px;
+	position: absolute;
+	right: 0;
+	text-transform: uppercase;
+	top: 0;
+}
+
+/* =============== # Contact =============== */
+
+.contact {
+	margin-top: 90px;
+}
+
+.contact h1 {
+	font-size: 3rem;
+	font-weight: 400;
+	line-height: 1.2;
+	margin-bottom: 48px;
+	text-align: center;
+}
+
+.contact .contact-form {
+	margin: auto;
+	width: 66%;
+}
+
+.contact-info {
+	margin-top: 150px;
+	padding: 105px 0 95px 0;
+	width: 100%;
+}
+
+.contact-info ul {
+	float: left;
+	list-style: none;
+	margin-right: 200px;
+}
+
+.contact-info ul li:first-child {
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin-bottom: 14px;
+}
+
+.contact-info ul li {
+	font-size: 1rem;
+	font-weight: 300;
+	margin-bottom: 10px;
+}
+
+/* =============== # CTA =============== */
+.contact-gap{
+	padding: 80px 0 0px 0;
+}
+
+.cta {
+	text-align: center;
+	padding: 190px 0 210px 0;
+	width: 100%;
+}
+
+.cta h1 {
+	font-size: 3.75rem;
+	font-weight: 400;
+	line-height: 1.2;
+	margin-bottom: 46px;
+}
+
+/* =============== # Featured Works =============== */
+
+.featured-works .item {
+	margin-bottom: 60px;
+	width: 100%;
+}
+
+.featured-works a:nth-of-type(5) .item {
+	margin-bottom: 0;
+}
+
+.featured-works .item-img {
+	height: 470px;
+	width: 100%;
+}
+
+.featured-works .item-title {
+	font-size: 2rem;
+	font-weight: 500;
+	line-height: 1;
+	margin: 20px 0 11px 0;
+}
+
+.featured-works .item-category {
+	font-size: .6875rem;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+/* =============== # Footer =============== */
+
+.footer-default {
+	height: 100px;
+	line-height: 100px;
+}
+
+.footer-default-border {
+	border-top: 1px solid #eee;
+	height: 101px;
+}
+
+.footer-default .copyright {
+	float: left;
+	font-size: .875rem;
+	font-weight: 400;
+	letter-spacing: .4px;
+	text-transform: capitalize;
+}
+
+.footer-default .follow-us-links {
+	float: right;
+}
+
+.footer-default .follow-us-links li {
+	float: left;
+	font-size: .875rem;
+	list-style: none;
+	margin-left: 35px;
+}
+
+/* =============== # Hero =============== */
+
+.hero {
+	padding: 150px 0;
+	position: relative;
+	width: 100%;
+}
+
+.hero h1 {
+	font-size: 5.625rem;
+	font-weight: 400;
+	line-height: 1.1;
+}
+
+.hero .social-links {
+	list-style: none;
+	position: absolute;
+	right: -6px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.hero .social-links li {
+	font-size: 1.125rem;
+	letter-spacing: .4px;
+	margin-bottom: 37px;
+	writing-mode: vertical-rl;
+}
+
+/* =============== # Navigation =============== */
+
+.main-header {
+	height: 100px;
+	width: 100%;
+}
+
+.logo {
+	float: left;
+	height: 30px;
+	margin-top: 36px;
+}
+
+.open-nav {
+	display: block;
+	float: right;
+	height: 100px;
+	position: relative;
+	width: 100px;
+}
+
+.open-nav i {
+	height: 2px;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 28%;
+}
+
+.open-nav i:before {
+	content: " ";
+	height: 2px;
+	position: absolute;
+	top: -9px;
+	width: 100%;
+}
+
+.open-nav i:after {
+	content: " ";
+	height: 2px;
+	position: absolute;
+	top: 9px;
+	width: 100%;
+}
+
+.close-nav {
+	float: right;
+	font-size: 1.3rem;
+	margin: 20px 40px 0 0;
+}
+
+.aside-navigation-overlay {
+	position: fixed;
+	top: 0;
+	left: -100%;
+	bottom: 0;
+	right: 0;
+	height: 100vh;
+	width: 100vw;
+	opacity: 0;
+	transition: opacity .4s, left 0s .4s;
+	z-index: 2;
+}
+
+.aside-navigation-overlay.active {
+	left: 0;
+	opacity: 1;
+	transition: opacity .4s, left 0s;
+}
+
+.aside-navigation {
+	height: 100vh;
+	left: -100%;
+	position: absolute;
+	top: 0;
+	transition: left .8s;
+	width: 400px;
+}
+
+.aside-navigation.active {
+	left: 0;
+}
+
+.aside-navigation nav {
+	left: 50px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.aside-navigation nav ul li {
+	font-size: 1.7rem;
+	font-weight: 500;
+	list-style: none;
+	padding-bottom: 13px;
+	text-transform: capitalize;
+}
+
+.aside-navigation .social-icons {
+	bottom: 40px;
+	left: 50px;
+	position: absolute;
+}
+
+.aside-navigation .social-icons li {
+	font-size: .95rem;
+	float: left;
+	list-style: none;
+	margin-right: 27px;
+}
+
+/* =============== # Portfolio =============== */
+
+.portfolio .portfolio-item {
+	float: left;
+	margin-bottom: 43px;
+	width: 48%;
+}
+
+.portfolio a:nth-of-type(odd) .portfolio-item {
+	margin-right: 4%;
+}
+
+.portfolio a:nth-of-type(5) .portfolio-item,
+.portfolio a:nth-of-type(6) .portfolio-item {
+	margin-bottom: 0;
+}
+
+.portfolio-item-thumbnail {
+	height: 520px;
+}
+
+.portfolio-item-heading {
+	font-size: 1.5rem;
+	font-weight: 400;
+	margin: 18px 0 3px 0;
+	text-transform: capitalize;
+}
+
+.portfolio-item-category {
+	font-size: .875rem;
+	font-weight: 300;
+	letter-spacing: .3px;
+	text-transform: capitalize;
+}
+
+/* =============== # Single Project =============== */
+
+.single-project .intro {
+	margin: 95px 0 110px 0;
+}
+
+.single-project .intro h1 {
+	font-size: 3.75rem;
+	font-weight: 400;
+	margin: 0 0 25px -3px;
+	text-transform: capitalize;
+}
+
+.single-project .intro ul {
+	float: left;
+	list-style: none;
+	margin-top: 7px;
+	width: 50%;
+}
+
+.single-project .intro ul li {
+	font-size: 1rem;
+	font-weight: 300;
+	letter-spacing: .1px;
+	margin-bottom: 8px;
+	text-transform: capitalize;
+}
+
+.single-project .intro p {
+	float: right;
+	font-size: 1.125rem;
+	font-weight: 300;
+	line-height: 1.9;
+	width: 50%;
+}
+
+.single-project .info {
+	font-size: 1.125rem;
+	font-weight: 300;
+	line-height: 1.9;
+	margin: 110px 0;
+	width: 60%;
+}
+
+.img-full {
+	height: 600px;
+	width: 100%;
+}
+
+.img-halved .item {
+	float: left;
+	height: 670px;
+	width: 48.75%;
+}
+
+.img-halved .item:nth-of-type(1) {
+	margin-right: 2.5%;
+}
+
+.next {
+	align-items: center;
+	display: flex;
+	cursor: pointer;
+	height: 500px;
+	justify-content: center;
+	width: 100%;
+}
+
+.next h2 {
+	font-size: 6.25rem;
+	font-weight: 400;
+	letter-spacing: 5px;
+	text-transform: capitalize;
+	transition:  all .2s ease-in-out;
+}

@@ -1,0 +1,149 @@
+/*-----------------------------------------------------
+Table of Contents
+
+- # color #111
+- # background #111
+- # color #222
+- # background #333
+- # color #444
+- # background #eee
+- # background #f8f8f8
+- # color #fff
+- # background #fff
+- # color #ff6f61 (accent color)
+- # background #ff6f61
+
+------------------------------------------------------*/
+
+/*-----------------------------------------------------
+# color #111
+------------------------------------------------------*/
+
+body,
+.aside-navigation nav ul li a,
+.aside-navigation .social-icons li a,
+.share-links li a,
+.comment .reply,
+.contact-form input::placeholder,
+.contact-form textarea::placeholder,
+.footer-default .follow-us-links li a,
+.blog .entry-title a,
+.portfolio-item-heading,
+.contact-info a,
+.next,
+.hero .social-links li a,
+.featured-works .item,
+.close-nav,
+.single-project .info {
+	color: #111;
+}
+
+/*-----------------------------------------------------
+# background #111
+------------------------------------------------------*/
+
+.open-nav,
+.contact-form input[type=submit],
+.btn {
+	background: #111;
+}
+
+.aside-navigation-overlay {
+	background: rgba(0, 0, 0, .7)
+}
+
+/*-----------------------------------------------------
+# color #222
+------------------------------------------------------*/
+
+.portfolio-item-category,
+.team-member .overlay .info h3,
+.single-project .intro ul li {
+	color: #222;
+}
+
+/*-----------------------------------------------------
+# background #333
+------------------------------------------------------*/
+
+.contact-form textarea::-webkit-scrollbar-thumb {
+	background: #333;
+	border-radius: 20px;
+}
+
+/*-----------------------------------------------------
+# color #444
+------------------------------------------------------*/
+
+.blog-post .entry-date,
+.comment .publication-date {
+	color: #444;
+}
+
+/*-----------------------------------------------------
+# background #eee
+------------------------------------------------------*/
+.share-links li a,
+.contact-form textarea::-webkit-scrollbar-track {
+	background: #eee;
+}
+
+/*-----------------------------------------------------
+# background #f8f8f8
+------------------------------------------------------*/
+
+.contact-form input,
+.contact-form textarea,
+.contact-info {
+	background: #f8f8f8;
+}
+
+/*-----------------------------------------------------
+# color #fff
+------------------------------------------------------*/
+.share-links li a:hover,
+.contact-form input[type=submit],
+.btn,
+.service-icon {
+	color: #fff;
+}
+
+/*-----------------------------------------------------
+# background #fff
+------------------------------------------------------*/
+
+.open-nav i,
+.open-nav i:before,
+.open-nav i:after,
+.aside-navigation,
+.team-member .overlay {
+	background: #fff;
+}
+
+/*-----------------------------------------------------
+# color #ff6f61
+------------------------------------------------------*/
+
+.aside-navigation nav ul li a:hover,
+.aside-navigation .social-icons li a:hover,
+.entry-category,
+.comment .reply:hover,
+.footer-default .follow-us-links li a:hover,
+.blog .entry-title a:hover,
+.hero .social-links li a:hover,
+.next h2:hover,
+.contact-info li a:hover {
+	color: #ff6f61;
+}
+
+/*-----------------------------------------------------
+# background #ff6f61
+------------------------------------------------------*/
+
+.open-nav:hover,
+.share-links li a:hover,
+.contact-form input[type=submit]:hover,
+.btn:hover,
+.service-icon {
+	background: #ff6f61;
+}
