@@ -75,12 +75,13 @@
 			<div class="intro">
 				
 				<h1>A guide to monitor SFMC Automations</h1>
-
+				
 				<ul>
-					<li>01. Setup Data Extensions</li>
+					<li>By Arusha Shahi</li>
+					<!-- <li>01. Setup Data Extensions</li>
 					<li>02. Find Paused Automations with SSJS</li>
 					<li>03. Setup Verification Activity</li>
-					<li>04. Send Email Notification</li>
+					<li>04. Send Email Notification</li> -->
 				</ul>
 
 				<!-- <p>We’ve all been there: a critical data import stops because an automation was "temporarily" paused and never resumed. Instead of manually clicking through folders every Monday morning, I developed a way to log, verify, and alert on paused automations.</p> -->
@@ -92,7 +93,7 @@
 			</div> <!-- /.intro -->
 
 			<div>
-				<img src="../assets/img/blog-01/01_overview.png" alt="" class="img-cover">
+				<img src="../assets/img/blog-01/01_overview.png" alt="Automation activity" class="img-cover">
 			</div> 
 
 			<div class="info">
@@ -103,7 +104,7 @@
 			</div>
 
 			<div>
-				<img src="../assets/img/blog-01/02_data_extension.png" alt="" class="img-cover">
+				<img src="../assets/img/blog-01/02_data_extension.png" alt="Data Extension" class="img-cover">
 			</div>
 
 			<div class="info">
@@ -205,13 +206,13 @@ if(dataRows && dataRows.length > 0) {
 </div>
 
 			<div class="info">
-				<h3>Step 3: Filtering the Noise (Verification)</h3>
+				<h3>Step 3: Verification Activity</h3>
 				<p>I didn't want to receive a "System is fine" email every single day. I only wanted to know when things were broken. To do this, I added a Verification Activity:</p>
 				<p>I set a rule: If the Paused Log has 0 rows, STOP the automation. This ensures I only get an email if there's actually a "Paused" automation found by my script.</p>
 			</div>
 
 			<div>
-				<img src="../assets/img/blog-01/03_verification.png" alt="" class="img-cover">
+				<img src="../assets/img/blog-01/03_verification.png" alt="Verification" class="img-cover">
 			</div>
 
 			<div class="info">
@@ -221,7 +222,7 @@ if(dataRows && dataRows.length > 0) {
 			</div>
 
 			<div>
-				<img src="../assets/img/blog-01/04_email.png" alt="" class="img-cover">
+				<img src="../assets/img/blog-01/04_email.png" alt="Email" class="img-cover">
 			</div> 
 
 			<div class="info">
@@ -257,8 +258,6 @@ if(dataRows && dataRows.length > 0) {
 				<li><a href="https://github.com/aarusa" target="_blank"><i class="fab fa-github"></i></a></li>
                 <li><a href="https://www.linkedin.com/in/shahiarusha" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
 				<li><a href="https://www.instagram.com/aarusa__/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-				<!-- <li><a href="https://dribbble.com/aarusa" target="_blank"><i class="fab fa-dribbble"></i></a></li> -->
-				<!-- <li><a href="https://www.behance.net/arushashahi1" target="_blank"><i class="fab fa-behance"></i></a></li> -->
 			</ul>
 	
 		</div> <!-- /.aside-navigation -->
