@@ -42,6 +42,90 @@
 
 	<!-- Share buttons -->
 	 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=69c1c0dc92271d51b0a66b1e&product=sop' async='async'></script>
+
+	 <style>
+		/* ========== Mobile Responsiveness for SFMC Blog Page ========== */
+
+/* 1. Container & Layout */
+.container {
+    width: 100%;
+    max-width: 1200px; /* Adjust to match your design's max width */
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+}
+
+/* 2. Responsive Images */
+.img-cover, 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* 3. Typography Scalability */
+@media (max-width: 768px) {
+    .intro h1 {
+        font-size: 28px;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    .info h3 {
+        font-size: 20px;
+        margin-top: 25px;
+    }
+
+    .info p, .info li {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+}
+
+/* 4. Code Block Fix (Crucial) */
+/* This prevents the code snippet from stretching the mobile screen width */
+.info pre {
+    overflow-x: auto !important; /* Force internal scroll */
+    white-space: pre !important; /* Maintain formatting */
+    word-wrap: normal !important; 
+    max-width: 100%;
+    display: block;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.info code {
+    display: block;
+    min-width: 600px; /* Ensures code doesn't wrap awkwardly */
+}
+
+/* 5. Header Adjustment */
+@media (max-width: 480px) {
+    .main-header .logo {
+        max-width: 140px;
+    }
+    
+    .intro ul {
+        padding-left: 0;
+        list-style: none;
+    }
+}
+
+/* 6. Navigation Overlay */
+.aside-navigation {
+    width: 100%; /* Full width on mobile for better UX */
+    max-width: 300px;
+}
+
+/* 7. Clearfix for floated elements */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+	 </style>
 </head>
 <body>
 
