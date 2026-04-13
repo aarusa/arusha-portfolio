@@ -44,6 +44,7 @@
 	<link rel="stylesheet" href="../../assets/css/main.css">
 	<link rel="stylesheet" href="../../assets/css/colors.css">
 	<link rel="stylesheet" href="../../assets/css/responsive.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/vs2015.min.css">
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:500,600%7COpen+Sans%7CPoppins:400,500,600&display=swap" rel="stylesheet">
@@ -131,7 +132,7 @@
 			</div>
 
 			<div class="code-block">
-				<pre><code>
+				<pre><code class="language-javascript">
 &lt;script runat="server"&gt;
 
 Platform.Load("Core","1.1.1");
@@ -262,5 +263,7 @@ if(dataRows && dataRows.length > 0) {
 	</div> <!-- /.aside-navigation-overlay -->
 
 	<script src="../../assets/js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
 </body>
 </html>

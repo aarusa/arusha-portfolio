@@ -1034,6 +1034,15 @@ a {
 	line-height: 1.9;
 }
 
+.blog-template--tutorial .info ul {
+	padding-left: 24px;
+	margin: 8px 0 12px 0;
+}
+
+.blog-template--tutorial .info ul li {
+	margin-bottom: 4px;
+}
+
 .blog-template--tutorial .code-block {
 	margin: 18px auto 40px auto;
 	max-width: 860px;
