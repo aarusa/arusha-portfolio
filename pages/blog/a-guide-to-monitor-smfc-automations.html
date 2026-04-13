@@ -53,90 +53,6 @@
 
 	<!-- Share buttons -->
 	 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=69c1c0dc92271d51b0a66b1e&product=sop' async='async'></script>
-
-	 <style>
-		/* ========== Mobile Responsiveness for SFMC Blog Page ========== */
-
-/* 1. Container & Layout */
-.container {
-    width: 100%;
-    max-width: 1200px; /* Adjust to match your design's max width */
-    padding-right: 20px;
-    padding-left: 20px;
-    margin-right: auto;
-    margin-left: auto;
-    box-sizing: border-box;
-}
-
-/* 2. Responsive Images */
-.img-cover, 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 20px;
-}
-
-/* 3. Typography Scalability */
-@media (max-width: 768px) {
-    .intro h1 {
-        font-size: 28px;
-        line-height: 1.2;
-        margin-bottom: 15px;
-    }
-
-    .info h3 {
-        font-size: 20px;
-        margin-top: 25px;
-    }
-
-    .info p, .info li {
-        font-size: 16px;
-        line-height: 1.6;
-    }
-}
-
-/* 4. Code Block Fix (Crucial) */
-/* This prevents the code snippet from stretching the mobile screen width */
-.info pre {
-    overflow-x: auto !important; /* Force internal scroll */
-    white-space: pre !important; /* Maintain formatting */
-    word-wrap: normal !important; 
-    max-width: 100%;
-    display: block;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-}
-
-.info code {
-    display: block;
-    min-width: 600px; /* Ensures code doesn't wrap awkwardly */
-}
-
-/* 5. Header Adjustment */
-@media (max-width: 480px) {
-    .main-header .logo {
-        max-width: 140px;
-    }
-    
-    .intro ul {
-        padding-left: 0;
-        list-style: none;
-    }
-}
-
-/* 6. Navigation Overlay */
-.aside-navigation {
-    width: 100%; /* Full width on mobile for better UX */
-    max-width: 300px;
-}
-
-/* 7. Clearfix for floated elements */
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-	 </style>
 </head>
 <body>
 
@@ -163,7 +79,7 @@ img {
 
 	<!-- ========== Main ========== -->
 
-	<main class="single-project">
+	<main class="single-project blog-template blog-template--tutorial">
 
 		<div class="container">
 			
@@ -186,23 +102,23 @@ img {
 
 			</div> <!-- /.intro -->
 
-			<div>
+			<div class="tutorial-media">
 				<img src="../../assets/img/blog-01/01_overview.png" alt="Automation activity" class="img-cover">
 			</div> 
 
 			<div class="info">
-				<h3>Step 1: Building Data Extensions</h3>
+				<h3 id="step-1">Step 1: Building Data Extensions</h3>
 				<p>First, I needed a place to store the "Truth." I created two Data Extensions:</p>
 				<h4>Automation_Monitoring_Log:</h4><p> My master list. It contains the ExternalKey of every automation I want to watch, a Flag to turn monitoring on/off, and a Status field. I added critical automations manually in this table.</p>
 				<h4>Paused_Automation_Log:</h4><p> This table only gets filled via SQL if the system finds a paused automation.</p>
 			</div>
 
-			<div>
+			<div class="tutorial-media">
 				<img src="../../assets/img/blog-01/02_data_extension.png" alt="Data Extension" class="img-cover">
 			</div>
 
 			<div class="info">
-				<h3>Step 2: The "Translator" Script (SSJS)</h3>
+				<h3 id="step-2">Step 2: The "Translator" Script (SSJS)</h3>
 				<p>The heart of this system is a SSJS activity. Since SFMC speaks in "Status Codes" (like 4 for Paused or -1 for Error), I wrote a script to:</p>
 				<ul>
 					<li>Loop through my monitored list.</li>
@@ -214,23 +130,8 @@ img {
 				
 			</div>
 
-<div class="info" style="width: 100%; max-width: 100%; overflow-x: hidden; margin: 20px 0;">
-    <pre style="
-        background-color: #282c34; 
-        color: #abb2bf; 
-        padding: 15px; 
-        border-radius: 8px; 
-        max-height: 500px; 
-        overflow-y: auto; 
-        overflow-x: auto; 
-        font-family: 'Courier New', Courier, monospace; 
-        font-size: 14px; 
-        line-height: 1.5; 
-        border: 1px solid #3e4451;
-        white-space: pre; /* Keeps code structure */
-        word-wrap: normal; /* Prevents awkward line breaks */
-    ">
-<code>
+			<div class="code-block">
+				<pre><code>
 &lt;script runat="server"&gt;
 
 Platform.Load("Core","1.1.1");
@@ -294,42 +195,43 @@ if(dataRows && dataRows.length > 0) {
 }
       
 &lt;/script&gt;
-</code>
-    </pre>
-
-</div>
+</code></pre>
+			</div>
 
 			<div class="info">
-				<h3>Step 3: Verification Activity</h3>
+				<h3 id="step-3">Step 3: Verification Activity</h3>
 				<p>I didn't want to receive a "System is fine" email every single day. I only wanted to know when things were broken. To do this, I added a Verification Activity:</p>
 				<p>I set a rule: If the Paused Log has 0 rows, STOP the automation. This ensures I only get an email if there's actually a "Paused" automation found by my script.</p>
 			</div>
 
-			<div>
+			<div class="tutorial-media">
 				<img src="../../assets/img/blog-01/03_verification.png" alt="Verification" class="img-cover">
 			</div>
 
 			<div class="info">
-				<h3>Step 4: The Dynamic Alert (AMPscript & HTML)</h3>
+				<h3 id="step-4">Step 4: The Dynamic Alert (AMPscript & HTML)</h3>
 				<p>Finally, I designed a clean, professional email. Using AMPscript, the email "reaches into" the Paused Log and builds a dynamic table.</p>
 				<p>If three automations are paused, the email shows a 3-row table with the names and keys of exactly what needs fixing. It's simple, professional, and saves me hours of manual troubleshooting.</p>
 			</div>
 
-			<div>
+			<div class="tutorial-media">
 				<img src="../../assets/img/blog-01/04_email.png" alt="Email" class="img-cover">
 			</div> 
 
 			<div class="info">
-				<h3>The Result</h3>
+				<h3 id="result">The Result</h3>
 				<p>By combining SSJS, SQL, and AMPscript, I've created a automation monitoring system. It doesn't just tell me there's a problem; it tells me exactly where the problem is, so I can fix it before the morning coffee is cold.</p>
 				<p>Are you building custom tools in SFMC? Let's connect and share ideas!</p>
 			</div>
 
 		</div> <!-- /.container -->
 
-		<a href="my-journey-to-salesforce-marketing-cloud.html" class="next">
-			<h2>next</h2>
-		</a>
+		<footer class="blog-footer">
+			<a href="my-journey-to-salesforce-marketing-cloud.html" class="next-post-btn">
+				<span class="btn-label">Next Post</span>
+				<h3>My Journey to Salesforce Marketing Cloud &rarr;</h3>
+			</a>
+		</footer>
 
 	</main> <!-- /.single-project -->
 

@@ -824,3 +824,261 @@ a {
 	text-transform: capitalize;
 	transition:  all .2s ease-in-out;
 }
+
+/* =============== # Blog Templates (Static Pages) =============== */
+
+.blog-template {
+	padding: 80px 0 100px 0;
+}
+
+.blog-template .container {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.blog-template img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* --- Template A: Long-form (1 hero image + more content) --- */
+
+.blog-template--longform {
+	background: transparent;
+}
+
+.blog-template--longform .blog-header {
+	text-align: center;
+	margin: 20px auto 50px auto;
+	max-width: 900px;
+}
+
+.blog-template--longform .entry-title {
+	font-family: Montserrat, sans-serif;
+	font-size: 3rem;
+	font-weight: 600;
+	line-height: 1.2;
+	margin-bottom: 12px;
+	text-transform: none;
+}
+
+.blog-template--longform .meta-data {
+	font-family: Poppins, sans-serif;
+	color: #888;
+	text-transform: uppercase;
+	font-size: 13px;
+	letter-spacing: 1px;
+}
+
+.blog-template--longform .meta-data span + span:before {
+	content: "•";
+	display: inline-block;
+	margin: 0 10px;
+	color: #bbb;
+}
+
+.blog-template--longform .journey-card {
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	overflow: visible;
+	box-shadow: none;
+	max-width: 980px;
+	margin: 0 auto;
+}
+
+.blog-template--longform .featured-image {
+	margin: 0 0 18px 0;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: none;
+	max-width: none;
+	height: 420px;
+}
+
+.blog-template--longform .featured-image img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.blog-template--longform .blog-content {
+	max-width: 820px;
+	margin: 0 auto;
+	font-family: "Open Sans", sans-serif;
+	padding: 20px 0 10px 0;
+}
+
+.blog-template--longform .blog-content p {
+	font-size: 18px;
+	line-height: 1.8;
+	color: #444;
+	margin-bottom: 25px;
+}
+
+.blog-template--longform .lead-text {
+	font-size: 22px;
+	color: #222;
+	font-weight: 500;
+	line-height: 1.6;
+}
+
+.blog-template--longform .lead-text:first-letter {
+	float: left;
+	font-family: Montserrat, sans-serif;
+	font-size: 3.2rem;
+	line-height: 1;
+	padding: 8px 10px 0 0;
+	color: #2A201F;
+}
+
+.blog-template--longform .engineer-quote {
+	font-family: Poppins, sans-serif;
+	font-size: 24px;
+	font-style: italic;
+	color: #2A201F;
+	border-left: 5px solid #2A201F;
+	padding: 20px 30px;
+	margin: 40px 0;
+	background: transparent;
+	border-radius: 0;
+}
+
+.blog-template .blog-footer {
+	margin-top: 80px;
+	padding-top: 40px;
+	border-top: 1px solid #eee;
+	text-align: center;
+}
+
+.blog-template .next-post-btn {
+	text-decoration: none;
+	display: inline-block;
+	transition: transform 0.3s ease;
+}
+
+.blog-template .next-post-btn:hover {
+	transform: translateY(-5px);
+}
+
+.blog-template .btn-label {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: #999;
+}
+
+.blog-template .next-post-btn h3 {
+	margin-top: 10px;
+	color: #222;
+	font-weight: 600;
+}
+
+/* --- Template B: Tutorial (text blocks + images + code after blocks) --- */
+
+.blog-template--tutorial .intro {
+	margin: 95px auto 45px auto;
+	max-width: 860px;
+}
+
+.blog-template--tutorial .intro h1 {
+	font-size: 3rem;
+	font-weight: 500;
+	margin: 0 0 18px 0;
+	text-transform: none;
+}
+
+.blog-template--tutorial .intro ul {
+	float: none;
+	width: auto;
+	margin: 0 0 18px 0;
+}
+
+.blog-template--tutorial .intro p {
+	float: none;
+	width: auto;
+	max-width: 860px;
+	font-size: 1.125rem;
+	line-height: 1.9;
+}
+
+.blog-template--tutorial .tutorial-media {
+	margin: 28px auto;
+	max-width: 860px;
+}
+
+.blog-template--tutorial .info {
+	margin: 55px auto 18px auto;
+	width: 100%;
+	max-width: 860px;
+}
+
+.blog-template--tutorial .info h3 {
+	font-size: 1.6rem;
+	font-weight: 500;
+	margin-bottom: 14px;
+	scroll-margin-top: 120px;
+}
+
+.blog-template--tutorial .info h4 {
+	font-size: 1.1rem;
+	font-weight: 500;
+	margin: 16px 0 6px 0;
+}
+
+.blog-template--tutorial .info p,
+.blog-template--tutorial .info li {
+	font-size: 1.05rem;
+	font-weight: 300;
+	line-height: 1.9;
+}
+
+.blog-template--tutorial .code-block {
+	margin: 18px auto 40px auto;
+	max-width: 860px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.blog-template--tutorial .code-block pre {
+	background-color: #282c34;
+	color: #abb2bf;
+	padding: 16px 18px;
+	border-radius: 0;
+	border: none;
+	border-left: 4px solid #2A201F;
+	max-height: 520px;
+	overflow-y: auto;
+	overflow-x: auto;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 14px;
+	line-height: 1.55;
+	white-space: pre;
+	word-wrap: normal;
+	-webkit-overflow-scrolling: touch;
+}
+
+.blog-template--tutorial .code-block code {
+	display: block;
+	min-width: 600px;
+}
+
+/* --- Blog Template Responsive Tweaks --- */
+
+@media (max-width: 768px) {
+	.blog-template--longform .entry-title { font-size: 2rem; }
+	.blog-template--longform .engineer-quote { font-size: 18px; }
+	.blog-template--longform .blog-content p { font-size: 16px; }
+	.blog-template--longform .featured-image { height: 260px; }
+	.blog-template--longform .blog-content { padding: 16px 0 6px 0; }
+
+	.blog-template--tutorial .intro h1 { font-size: 2rem; }
+	.blog-template--tutorial .info h3 { font-size: 1.3rem; }
+	.blog-template--tutorial .info p,
+	.blog-template--tutorial .info li { font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+	.blog-template--tutorial .code-block code { min-width: 520px; }
+}
