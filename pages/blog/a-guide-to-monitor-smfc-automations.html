@@ -90,10 +90,6 @@
 				
 				<ul>
 					<li>By Arusha Shahi</li>
-					<!-- <li>01. Setup Data Extensions</li>
-					<li>02. Find Paused Automations with SSJS</li>
-					<li>03. Setup Verification Activity</li>
-					<li>04. Send Email Notification</li> -->
 				</ul>
 
 				<p>Have you ever had a critical automation paused, only to find out 24 hours later? In Salesforce Marketing Cloud, keeping an eye on dozens of automations can be a full-time job.
@@ -110,8 +106,8 @@
 			<div class="info">
 				<h3 id="step-1">Step 1: Building Data Extensions</h3>
 				<p>First, I needed a place to store the "Truth." I created two Data Extensions:</p>
-				<h4>Automation_Monitoring_Log:</h4><p> My master list. It contains the ExternalKey of every automation I want to watch, a Flag to turn monitoring on/off, and a Status field. I added critical automations manually in this table.</p>
-				<h4>Paused_Automation_Log:</h4><p> This table only gets filled via SQL if the system finds a paused automation.</p>
+				<h4>Automation_Monitoring_Log:</h4><p> My master list. It contains the ExternalKey of every automation I want to watch, a Flag to turn monitoring on/off, and a Status field to check if the automation is paused. I added critical automations manually in this table.</p>
+				<h4>Paused_Automation_Log:</h4><p> This table only gets filled via SQL activity if the system finds a paused automation.</p>
 			</div>
 
 			<div class="tutorial-media">
