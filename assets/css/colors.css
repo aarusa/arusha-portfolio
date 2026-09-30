@@ -34,7 +34,9 @@ body,
 .hero .social-links li a,
 .featured-works .item,
 .close-nav,
-.single-project .info {
+.single-project .info,
+.contact-intro a,
+.contact-chat-bubble a {
 	color: #111;
 }
 
@@ -44,8 +46,18 @@ body,
 
 .open-nav,
 .contact-form input[type=submit],
-.btn {
+.btn,
+.contact-chat-send {
 	background: #111;
+}
+
+.contact-chat-suggestions button {
+	color: #111;
+}
+
+.contact-chat-suggestions button:hover {
+	color: #fff;
+	border-color: #ff6f61;
 }
 
 .aside-navigation-overlay {
@@ -104,7 +116,8 @@ body,
 .share-links li a:hover,
 .contact-form input[type=submit],
 .btn,
-.service-icon {
+.service-icon,
+.contact-chat-send {
 	color: #fff;
 }
 
@@ -134,7 +147,9 @@ body,
 .blog .entry-title a:hover,
 .hero .social-links li a:hover,
 .next h2:hover,
-.contact-info li a:hover {
+.contact-info li a:hover,
+.contact-intro a:hover,
+.contact-chat-bubble a:hover {
 	color: #ff6f61;
 }
 
@@ -146,6 +161,8 @@ body,
 .share-links li a:hover,
 .contact-form input[type=submit]:hover,
 .btn:hover,
-.service-icon {
+.service-icon,
+.contact-chat-send:hover,
+.contact-chat-suggestions button:hover {
 	background: #ff6f61;
 }

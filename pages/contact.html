@@ -16,8 +16,8 @@
 	<!-- Metas -->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<title>Arusha Shahi</title>
-	<meta name="description" content="Portfolio of a Software Engineer">
+	<title>Contact | Arusha Shahi</title>
+	<meta name="description" content="Chat with Arusha Shahi about software engineering, LLM work, or starting a project — or email shahiarusha@gmail.com.">
 
 	<!-- External CSS -->
 	<link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
@@ -32,7 +32,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:500,600%7COpen+Sans%7CPoppins:400,500,600&display=swap" rel="stylesheet">
 
 	<!-- Favicon -->
-	<link rel="icon" href="../assets/img/favicon.png">
+	<link rel="icon" href="../assets/img/favicon.ico">
 </head>
 <body>
 
@@ -63,27 +63,29 @@
 		
 		<div class="container">
 			
-			<h1>Ready to start a project?</h1>
+			<div class="contact-intro">
+				<h1>Chat with me</h1>
+				<p>Ask about my work, LLM engineering, or how we might collaborate. Prefer email? <a href="mailto:shahiarusha@gmail.com">shahiarusha@gmail.com</a></p>
+			</div>
 
-			<form action="#" class="contact-form">
-					
-				<input  name="name" placeholder="Name *" type="text" required>
-				<input  name="email" placeholder="Email *" type="email" required>
-				<input  name="business" placeholder="Business" type="text">
-				<input  name="phone-number" placeholder="Phone Number" type="tel">
-				<textarea name="message" placeholder="Tell us a bit about your project" required></textarea>
-				<input type="submit" value="send message">
-				<div class="clearfix"></div>
+			<div class="contact-chat" id="contact-chat">
+				<div class="contact-chat-log" id="chat-log" aria-live="polite"></div>
 
-			</form> <!-- /.contact-form -->
+				<form class="contact-chat-form" id="chat-form">
+					<input type="text" id="chat-input" name="message" placeholder="Type a message..." autocomplete="off" required>
+					<button type="submit" class="contact-chat-send" aria-label="Send message">
+						<span>Send</span>
+					</button>
+				</form>
+
+				<ul class="contact-chat-suggestions">
+					<li><button type="button" data-prompt="What do you work on?">What do you work on?</button></li>
+					<li><button type="button" data-prompt="Tell me about your LLM work">LLM engineering</button></li>
+					<li><button type="button" data-prompt="How can I hire you?">How can I hire you?</button></li>
+				</ul>
+			</div>
 
 		</div> <!-- /.container -->
-
-	
-		<div class="contact-gap">
-				
-		</div>
-
 
 	</main> <!-- /.contact -->
 
@@ -132,5 +134,6 @@
 	</div> <!-- /.aside-navigation-overlay -->
 
 	<script src="../assets/js/main.js"></script>
+	<script src="../assets/js/contact-chat.js"></script>
 </body>
 </html>

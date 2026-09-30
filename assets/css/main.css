@@ -153,7 +153,47 @@ a {
 	font-size: 3rem;
 	font-weight: 400;
 	line-height: 1.4;
-	margin: 140px 50px 140px 0;
+	margin: 140px 50px 60px 0;
+}
+
+.about-body {
+	max-width: 640px;
+	margin-bottom: 40px;
+}
+
+.about-body p {
+	font-size: 1.125rem;
+	font-weight: 300;
+	line-height: 1.9;
+	margin-bottom: 22px;
+}
+
+.about-focus {
+	list-style: none;
+	margin: 40px 0 0 0;
+	padding: 0;
+}
+
+.about-focus li {
+	font-family: Montserrat, sans-serif;
+	font-size: .75rem;
+	font-weight: 500;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	margin-bottom: 14px;
+	padding-left: 18px;
+	position: relative;
+}
+
+.about-focus li:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 8px;
+	height: 2px;
+	background: #ff6f61;
 }
 
 .about-heading {
@@ -454,14 +494,137 @@ a {
 
 .contact {
 	margin-top: 90px;
+	padding-bottom: 100px;
 }
 
 .contact h1 {
 	font-size: 3rem;
 	font-weight: 400;
 	line-height: 1.2;
+	margin-bottom: 18px;
+	text-align: left;
+}
+
+.contact-intro {
+	max-width: 640px;
 	margin-bottom: 48px;
-	text-align: center;
+}
+
+.contact-intro p {
+	font-size: 1.125rem;
+	font-weight: 300;
+	line-height: 1.9;
+}
+
+.contact-intro a {
+	border-bottom: 1px solid currentColor;
+}
+
+.contact-chat {
+	max-width: 720px;
+}
+
+.contact-chat-log {
+	height: 380px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 28px 0 12px 0;
+	margin-bottom: 18px;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.contact-chat-log::-webkit-scrollbar {
+	display: none;
+	width: 0;
+	height: 0;
+}
+
+.contact-chat-msg {
+	margin-bottom: 22px;
+	max-width: 85%;
+}
+
+.contact-chat-msg--user {
+	margin-left: auto;
+	text-align: right;
+}
+
+.contact-chat-label {
+	display: block;
+	font-family: Montserrat, sans-serif;
+	font-size: .6875rem;
+	font-weight: 500;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	margin-bottom: 8px;
+	opacity: .55;
+}
+
+.contact-chat-bubble {
+	font-size: 1.05rem;
+	font-weight: 300;
+	line-height: 1.7;
+}
+
+.contact-chat-bubble a {
+	border-bottom: 1px solid currentColor;
+}
+
+.contact-chat-form {
+	display: flex;
+	align-items: stretch;
+	gap: 12px;
+	margin-bottom: 18px;
+}
+
+.contact-chat-form input[type=text] {
+	flex: 1;
+	border: none;
+	border-bottom: 1px solid #eee;
+	outline: none;
+	font-family: Poppins, sans-serif;
+	font-size: 1rem;
+	font-weight: 300;
+	padding: 14px 0;
+	background: transparent;
+}
+
+.contact-chat-send {
+	border: none;
+	cursor: pointer;
+	font-family: Montserrat, sans-serif;
+	font-size: .75rem;
+	font-weight: 600;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	padding: 0 28px;
+	height: 55px;
+	border-radius: 27.5px;
+	transition: all .2s ease-in-out;
+}
+
+.contact-chat-suggestions {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 0;
+	margin: 0;
+}
+
+.contact-chat-suggestions button {
+	border: 1px solid #eee;
+	background: transparent;
+	cursor: pointer;
+	font-family: Poppins, sans-serif;
+	font-size: .875rem;
+	font-weight: 300;
+	padding: 10px 16px;
+	border-radius: 999px;
+	transition: all .2s ease-in-out;
 }
 
 .contact .contact-form {
@@ -590,9 +753,12 @@ a {
 .hero .social-links {
 	list-style: none;
 	position: absolute;
-	right: -6px;
+	right: 0;
 	top: 50%;
 	transform: translateY(-50%);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
 }
 
 .hero .social-links li {

@@ -82,16 +82,16 @@ Table of Contents
 	}
 
 	.featured-works .item-category {
-		left: -45px;
+		left: 20px;
 		position: absolute;
 		text-transform: uppercase;
-		top: 0;
+		top: 20px;
 		writing-mode: vertical-rl;
 	}
 
 	.featured-works a:nth-of-type(1) .item,
 	.featured-works a:nth-of-type(5) .item {
-		margin-left: 100px;
+		margin-left: 0;
 	}
 
 	.featured-works a:nth-of-type(1) .item .item-title {
@@ -101,7 +101,7 @@ Table of Contents
 	.featured-works a:nth-of-type(2) .item,
 	.featured-works a:nth-of-type(4) .item {
 		float: right;
-		margin-right: 100px;
+		margin-right: 0;
 	}
 
 	.featured-works a:nth-of-type(2) .item .item-title {
@@ -113,7 +113,7 @@ Table of Contents
 	}
 
 	.featured-works a:nth-of-type(3) .item {
-		margin-left: 200px;
+		margin-left: 0;
 		width: 66%;
 	}
 
@@ -485,6 +485,18 @@ Table of Contents
 
 	.contact h1 {
 		font-size: 2.5rem;
+	}
+
+	.contact-chat-form {
+		flex-direction: column;
+	}
+
+	.contact-chat-send {
+		width: 100%;
+	}
+
+	.contact-chat-log {
+		height: 320px;
 	}
 
 	.cta h1 {
