@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EFNPQ7K1HB"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-EFNPQ7K1HB');
+	</script>
+
+	<!-- Metas -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>Building a Chat Assistant with Gradio UI and Ollama | Arusha Shahi</title>
+	
+	<meta name="title" content="Building a Chat Assistant with Gradio UI and Ollama | Arusha Shahi">
+	<meta name="description" content="How to build a retail Customer Assistant with Gradio ChatInterface, Ollama, system prompts, and multi-shot prompting — with examples and use cases.">
+	
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://arusha.com.np/blogs/building-chat-assistant-gradio-ollama-multi-shot-prompting.html">
+	<meta property="og:title" content="Building a Chat Assistant with Gradio UI and Ollama">
+	<meta property="og:description" content="System prompts, multi-shot examples, and a Gradio chat UI that steers shoppers toward sale hats.">
+	<meta property="og:image" content="https://arusha.com.np/assets/img/customer-assistant.jpg">
+
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://arusha.com.np/blogs/building-chat-assistant-gradio-ollama-multi-shot-prompting.html">
+	<meta property="twitter:title" content="Building a Chat Assistant with Gradio UI and Ollama">
+	<meta property="twitter:description" content="System prompts, multi-shot examples, and a Gradio chat UI that steers shoppers toward sale hats.">
+	<meta property="twitter:image" content="https://arusha.com.np/assets/img/customer-assistant.jpg">
+
+	<meta property="og:locale" content="en_AU">
+	<meta property="article:author" content="Arusha Shahi">
+
+	<!-- External CSS -->
+	<link rel="stylesheet" href="../../assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="../../assets/css/themify-icons.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../assets/css/colors.css">
+	<link rel="stylesheet" href="../../assets/css/responsive.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/vs2015.min.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:500,600%7COpen+Sans%7CPoppins:400,500,600&display=swap" rel="stylesheet">
+
+	<!-- Favicon -->
+	<link rel="icon" href="../../assets/img/favicon.ico">
+
+	<!-- Share buttons -->
+	 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=69c1c0dc92271d51b0a66b1e&product=sop' async='async'></script>
+</head>
+<body>
+
+	<!-- ========== Header ========== -->
+
+	<header class="main-header">
+
+		<div class="container">
+
+			<a href="../../index.html">
+				<img src="../../assets/img/logo.svg" class="logo" alt="Arusha Shahi">
+			</a>
+
+			<a href="#" class="open-nav">
+				<i></i>
+			</a>
+
+			<div class="clearfix"></div>
+
+		</div> <!-- /.container -->
+
+	</header> <!-- /.main-header -->
+
+
+	<!-- ========== Main ========== -->
+
+	<main class="single-project blog-template blog-template--tutorial">
+
+		<div class="container">
+			
+			<div class="intro">
+				
+				<h1>Building a Chat Assistant with Gradio UI and Ollama</h1>
+				
+				<ul>
+					<li>By Arusha Shahi</li>
+				</ul>
+
+				<p>I built a Customer Assistant for a clothes store that sells hats and dresses. The goal: a Gradio chat UI backed by Ollama that gently steers shoppers toward hats on sale — using system prompts and multi-shot prompting. Here’s the pattern, plus examples and use cases.</p>
+				<div class="clearfix"></div>
+
+			</div> <!-- /.intro -->
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/customer-assistant/hero-landscape.jpg" alt="Customer Assistant overview" class="img-cover">
+			</div> 
+
+			<div class="info">
+				<h3 id="idea">The idea</h3>
+				<p>Generic chatbots answer questions. Retail assistants need a persona, inventory rules, and a sales nudge. This demo uses Gradio’s <code>ChatInterface</code>, streams from a local Ollama model (<code>llama3.2</code>), and encodes store policy in the system message — including a multi-shot style example.</p>
+				<p>Live demo: <a href="https://2d1bc9893772ca0580.gradio.live" target="_blank" rel="noopener noreferrer">Customer Assistant on Gradio</a>.</p>
+			</div>
+
+			<div class="info">
+				<h3 id="step-1">Step 1: Start with ChatInterface</h3>
+				<p>Gradio already knows how to render history, stream tokens, and collect user input. Your job is a <code>chat(message, history)</code> function that yields the assistant reply.</p>
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/customer-assistant/01-ui.png" alt="Empty Gradio ChatInterface" class="img-cover">
+			</div>
+
+			<div class="code-block">
+				<pre><code class="language-python">from openai import OpenAI
+import gradio as gr
+
+ollama = OpenAI(base_url=OLLAMA_BASE_URL, api_key="ollama")
+MODEL = "llama3.2"
+
+def chat(message, history):
+    history = [{"role": h["role"], "content": h["content"]} for h in history]
+    messages = (
+        [{"role": "system", "content": system_message}]
+        + history
+        + [{"role": "user", "content": message}]
+    )
+    stream = ollama.chat.completions.create(
+        model=MODEL, messages=messages, stream=True
+    )
+    response = ""
+    for chunk in stream:
+        response += chunk.choices[0].delta.content or ""
+        yield response
+
+gr.ChatInterface(fn=chat).launch(share=True)
+</code></pre>
+			</div>
+
+			<div class="info">
+				<h3 id="step-2">Step 2: System prompts that sell (gently)</h3>
+				<p>The system message defines who the assistant is, what’s on sale, and how hard to push. Hats are 60% off; most other items are 50% off. When someone asks about shoes or dresses, acknowledge them — then remind them about hats.</p>
+			</div>
+
+			<div class="code-block">
+				<pre><code class="language-python">system_message = """You are a helpful assistant in a clothes store. You should try to gently encourage \
+the customer to try items that are on sale. Hats are 60% off, and most other items are 50% off. \
+For example, if the customer says 'I'm looking to buy a hat', \
+you could reply something like, 'Wonderful - we have lots of hats - including several that are part of our sales event.'\
+Encourage the customer to buy hats if they are unsure what to get.
+
+If the customer asks for shoes or dress, you should respond that shoes are not on sale today, \
+but remind the customer to look at hats!"""
+</code></pre>
+			</div>
+
+			<div class="info">
+				<h3 id="multi-shot">What is multi-shot prompting?</h3>
+				<p><strong>Multi-shot</strong> (also called few-shot when you provide several examples) means you show the model one or more input → output pairs so it can imitate the pattern. Zero-shot only describes the task; multi-shot demonstrates it.</p>
+				<p>In this store assistant, the system prompt embeds a concrete example: customer says <em>“I’m looking to buy a hat”</em> → assistant celebrates the selection and mentions the sales event. That single shot is enough for the model to reuse the tone and structure on similar turns.</p>
+			</div>
+
+			<div class="info">
+				<h3 id="use-cases">Examples and use cases of multi-shot prompting</h3>
+				<ul>
+					<li><strong>Retail sales assistants</strong> — show how to mention discounts without being aggressive (this project).</li>
+					<li><strong>Support triage</strong> — example tickets labeled “refund / shipping / bug” so the model classifies consistently.</li>
+					<li><strong>Tone matching</strong> — brand voice samples (formal vs playful) so replies stay on-brand.</li>
+					<li><strong>Format control</strong> — few examples of JSON or markdown tables so outputs stay parseable.</li>
+					<li><strong>Edge-case handling</strong> — sample replies for out-of-stock, out-of-scope, or policy refusals.</li>
+					<li><strong>Language switching</strong> — paired examples in two languages when bilingual support matters.</li>
+				</ul>
+				<p>Rule of thumb: if a one-line instruction keeps failing, add 1–3 short examples that look like the replies you want.</p>
+			</div>
+
+			<div class="info">
+				<h3 id="step-3">Step 3: Dynamic rules for edge cases</h3>
+				<p>Some policies only matter sometimes. If the user mentions belts, the notebook appends an extra line to the system message for that turn — the store doesn’t sell belts, so point to other sale items instead of inventing inventory.</p>
+			</div>
+
+			<div class="code-block">
+				<pre><code class="language-python">def chat(message, history):
+    history = [{"role": h["role"], "content": h["content"]} for h in history]
+    relevant_system_message = system_message
+    if "belt" in message.lower():
+        relevant_system_message += (
+            " The store does not sell belts; if you are asked for belts, "
+            "be sure to point out other items on sale."
+        )
+
+    messages = (
+        [{"role": "system", "content": relevant_system_message}]
+        + history
+        + [{"role": "user", "content": message}]
+    )
+    # ... stream from Ollama as before
+</code></pre>
+			</div>
+
+			<div class="info">
+				<h3 id="result">Seeing it in the UI</h3>
+				<p>Ask for a hat and the assistant mirrors the multi-shot example — including the 60% off sale. Ask about dresses or shoes and it redirects toward hats without ignoring the question.</p>
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/customer-assistant/02-chat.png" alt="Chat promoting sale hats" class="img-cover">
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/customer-assistant/03-sale-redirect.png" alt="Chat redirecting from shoes to hats" class="img-cover">
+			</div>
+
+			<div class="info">
+				<h3 id="takeaways">Takeaways</h3>
+				<p>Gradio gives you the chat shell. Ollama gives you a local model. System prompts plus multi-shot examples give you controllable retail behaviour — persona, promotions, and polite redirects — without training a custom model.</p>
+				<p>If you’re prototyping assistants, start with one sharp system message and one good example. Add dynamic rules only when a recurring edge case shows up in real chats.</p>
+			</div>
+
+		</div> <!-- /.container -->
+
+		<footer class="blog-footer">
+			<a href="building-multi-model-gradio-uis-with-streaming.html" class="next-post-btn">
+				<span class="btn-label">Next Post</span>
+				<h3>Building Multi-Model Gradio UIs with Multi-Model Streaming &rarr;</h3>
+			</a>
+		</footer>
+
+	</main> <!-- /.single-project -->
+
+	<div class="aside-navigation-overlay">
+		
+		<div class="aside-navigation">
+			
+			<a href="#" class="close-nav"><i class="ti-close"></i></a>
+
+			<nav>
+				<ul>
+					<li><a href="../../index.html">home</a></li>
+					<li><a href="../about.html">about</a></li>
+					<li><a href="../portfolio.html">portfolio</a></li>
+					<li><a href="../blog.html">blog</a></li>
+					<li><a href="../contact.html">contact</a></li>
+				</ul>
+			</nav>
+
+			<ul class="social-icons">
+				<li><a href="https://github.com/aarusa" target="_blank"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/shahiarusha" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+				<li><a href="https://www.instagram.com/aarusa__/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+			</ul>
+	
+		</div> <!-- /.aside-navigation -->
+
+	</div> <!-- /.aside-navigation-overlay -->
+
+	<script src="../../assets/js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+</body>
+</html>

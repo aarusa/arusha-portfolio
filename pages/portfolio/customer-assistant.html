@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EFNPQ7K1HB"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-EFNPQ7K1HB');
+	</script>
+
+	<!-- Metas -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>Customer Assistant | Arusha Shahi</title>
+	<meta name="title" content="Customer Assistant | Arusha Shahi">
+	<meta name="description" content="A Gradio chat assistant powered by Ollama that helps shoppers buy hats and dresses — steered with system prompts and multi-shot examples.">
+
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://arusha.com.np/pages/portfolio/customer-assistant.html">
+	<meta property="og:title" content="Customer Assistant | Arusha Shahi">
+	<meta property="og:description" content="Build a retail chat assistant with Gradio ChatInterface, Ollama, system prompts, and multi-shot prompting.">
+	<meta property="og:image" content="https://arusha.com.np/assets/img/customer-assistant.jpg">
+
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://arusha.com.np/pages/portfolio/customer-assistant.html">
+	<meta property="twitter:title" content="Customer Assistant | Arusha Shahi">
+	<meta property="twitter:description" content="Build a retail chat assistant with Gradio ChatInterface, Ollama, system prompts, and multi-shot prompting.">
+	<meta property="twitter:image" content="https://arusha.com.np/assets/img/customer-assistant.jpg">
+
+	<meta property="og:locale" content="en_AU">
+	<meta property="article:author" content="Arusha Shahi">
+
+	<!-- External CSS -->
+	<link rel="stylesheet" href="../../assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="../../assets/css/themify-icons.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../assets/css/colors.css">
+	<link rel="stylesheet" href="../../assets/css/responsive.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/vs2015.min.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:500,600%7COpen+Sans%7CPoppins:400,500,600&display=swap" rel="stylesheet">
+
+	<!-- Favicon -->
+	<link rel="icon" href="../../assets/img/favicon.ico">
+</head>
+<body>
+
+	<!-- ========== Header ========== -->
+
+	<header class="main-header">
+
+		<div class="container">
+
+			<a href="../../index.html">
+				<img src="../../assets/img/logo.svg" class="logo" alt="Arusha Shahi">
+			</a>
+
+			<a href="#" class="open-nav">
+				<i></i>
+			</a>
+
+			<div class="clearfix"></div>
+
+		</div> <!-- /.container -->
+
+	</header> <!-- /.main-header -->
+
+
+	<!-- ========== Main ========== -->
+
+	<main class="single-project blog-template blog-template--tutorial">
+
+		<div class="container">
+			
+			<div class="intro">
+				
+				<h1>Customer Assistant</h1>
+
+				<ul>
+					<li>gradio</li>
+					<li>ollama</li>
+					<li>system prompts</li>
+					<li>multi-shot prompting</li>
+				</ul>
+
+				<p>A streaming chat assistant for a clothes store that sells hats and dresses — built with Gradio’s <code>ChatInterface</code> and Ollama, and steered to gently push sale hats using system prompts and multi-shot examples.</p>
+
+				<div class="clearfix"></div>
+
+			</div> <!-- /.intro -->
+
+			<div class="tutorial-media tutorial-media--hero">
+				<img src="../../assets/img/customer-assistant/hero-landscape.jpg" alt="Customer Assistant project visual" class="img-cover">
+			</div>
+
+			<div class="info">
+				<h3>The challenge</h3>
+				<p>Retail assistants need more than generic helpfulness. This one should stay on-brand for a hat-and-dress store, mention that hats are 60% off, and softly redirect shoppers who ask about shoes or dresses back toward the sale — without sounding pushy.</p>
+			</div>
+
+			<div class="info">
+				<h3>Gradio chat UI</h3>
+				<p>The front end is a standard Gradio <code>ChatInterface</code>: message history, streaming replies, and a simple text box. The interesting behaviour lives in the system message and the chat callback wired to Ollama (<code>llama3.2</code> via the OpenAI-compatible API).</p>
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/customer-assistant/01-ui.png" alt="Gradio ChatInterface for the Customer Assistant" class="img-cover">
+			</div>
+
+			<div class="info">
+				<h3>System prompt + multi-shot example</h3>
+				<p>The system message sets the store persona and includes a worked example (multi-shot style): if a customer says they’re looking for a hat, reply by celebrating the selection and naming the sales event. Extra rules cover dresses/shoes (not the focus today — steer to hats) and belts (not sold).</p>
+			</div>
+
+			<div class="code-block">
+				<pre><code class="language-python">system_message = """You are a helpful assistant in a clothes store. You should try to gently encourage \
+the customer to try items that are on sale. Hats are 60% off, and most other items are 50% off. \
+For example, if the customer says 'I'm looking to buy a hat', \
+you could reply something like, 'Wonderful - we have lots of hats - including several that are part of our sales event.'\
+Encourage the customer to buy hats if they are unsure what to get.
+
+If the customer asks for shoes or dress, you should respond that shoes are not on sale today, \
+but remind the customer to look at hats!"""
+</code></pre>
+			</div>
+
+			<div class="info">
+				<h3>Streaming chat with Ollama</h3>
+				<p>Each turn rebuilds the message list from Gradio history, prepends the system prompt, and streams tokens from Ollama so the reply appears live in the chat panel.</p>
+			</div>
+
+			<div class="code-block">
+				<pre><code class="language-python">from openai import OpenAI
+import gradio as gr
+
+ollama = OpenAI(base_url=OLLAMA_BASE_URL, api_key="ollama")
+MODEL = "llama3.2"
+
+def chat(message, history):
+    history = [{"role": h["role"], "content": h["content"]} for h in history]
+    relevant_system_message = system_message
+    if "belt" in message.lower():
+        relevant_system_message += (
+            " The store does not sell belts; if you are asked for belts, "
+            "be sure to point out other items on sale."
+        )
+
+    messages = (
+        [{"role": "system", "content": relevant_system_message}]
+        + history
+        + [{"role": "user", "content": message}]
+    )
+
+    stream = ollama.chat.completions.create(
+        model=MODEL, messages=messages, stream=True
+    )
+
+    response = ""
+    for chunk in stream:
+        response += chunk.choices[0].delta.content or ""
+        yield response
+
+gr.ChatInterface(fn=chat).launch(share=True)
+</code></pre>
+			</div>
+
+			<div class="info">
+				<h3>Sale-aware replies</h3>
+				<p>Ask for a hat and the assistant mirrors the multi-shot example — celebrating the sale and the 60% discount. Ask about dresses or shoes and it acknowledges the request, then redirects attention to hats on offer.</p>
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/customer-assistant/02-chat.png" alt="Assistant promoting hats on sale" class="img-cover">
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/customer-assistant/03-sale-redirect.png" alt="Assistant redirecting from shoes to sale hats" class="img-cover">
+			</div>
+
+			<div class="info">
+				<h3>Why this pattern works</h3>
+				<ul>
+					<li><strong>System prompts</strong> define persona, inventory rules, and tone once.</li>
+					<li><strong>Multi-shot examples</strong> show the model the exact style of reply you want.</li>
+					<li><strong>Dynamic system tweaks</strong> (e.g. belts) keep edge cases out of every turn’s user message.</li>
+					<li><strong>Gradio + Ollama</strong> ship a shareable demo without a custom front end.</li>
+				</ul>
+			</div>
+
+			<div class="cta">
+				<h1>Try the live demo</h1>
+				<a href="https://2d1bc9893772ca0580.gradio.live" target="_blank" class="btn">view project</a>
+			</div>
+
+		</div> <!-- /.container -->
+
+	</main> <!-- /.single-project -->
+
+	<footer class="footer-default footer-default-border">
+
+		<div class="container">
+
+			<p class="copyright"><i class="far fa-copyright"></i> 2026 Arusha Shahi. all rights reserved</p>
+
+			<ul class="follow-us-links">
+				<li><a href="https://github.com/aarusa" target="_blank"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/shahiarusha" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+				<li><a href="https://www.instagram.com/aarusa__/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+			</ul> 
+
+			<div class="clearfix"></div>
+
+		</div> <!-- /.container -->
+
+	</footer> <!-- /.footer-default -->
+
+	<div class="aside-navigation-overlay">
+		
+		<div class="aside-navigation">
+			
+			<a href="#" class="close-nav"><i class="ti-close"></i></a>
+
+			<nav>
+				<ul>
+					<li><a href="../../index.html">home</a></li>
+					<li><a href="../about.html">about</a></li>
+					<li><a href="../portfolio.html">portfolio</a></li>
+					<li><a href="../blog.html">blog</a></li>
+					<li><a href="../contact.html">contact</a></li>
+				</ul>
+			</nav>
+
+			<ul class="social-icons">
+				<li><a href="https://github.com/aarusa" target="_blank"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/shahiarusha" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+				<li><a href="https://www.instagram.com/aarusa__/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+			</ul>
+	
+		</div> <!-- /.aside-navigation -->
+
+	</div> <!-- /.aside-navigation-overlay -->
+
+	<script src="../../assets/js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+</body>
+</html>

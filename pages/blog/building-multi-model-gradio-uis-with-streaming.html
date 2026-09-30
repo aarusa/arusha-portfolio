@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EFNPQ7K1HB"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-EFNPQ7K1HB');
+	</script>
+
+	<!-- Metas -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>Building Multi-Model Gradio UIs with Multi-Model Streaming | Arusha Shahi</title>
+	
+	<meta name="title" content="Building Multi-Model Gradio UIs with Multi-Model Streaming | Arusha Shahi">
+	<meta name="description" content="How I built a Brochure Generator Gradio app that streams from both Ollama and Gemini free models in one shared UI.">
+	
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://arusha.com.np/blogs/building-multi-model-gradio-uis-with-streaming.html">
+	<meta property="og:title" content="Building Multi-Model Gradio UIs with Multi-Model Streaming">
+	<meta property="og:description" content="One Gradio interface, two model providers, live token streaming — Ollama + Gemini free models.">
+	<meta property="og:image" content="https://arusha.com.np/assets/img/brochure-generator/hero-landscape.jpg">
+
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://arusha.com.np/blogs/building-multi-model-gradio-uis-with-streaming.html">
+	<meta property="twitter:title" content="Building Multi-Model Gradio UIs with Multi-Model Streaming">
+	<meta property="twitter:description" content="One Gradio interface, two model providers, live token streaming — Ollama + Gemini free models.">
+	<meta property="twitter:image" content="https://arusha.com.np/assets/img/brochure-generator/hero-landscape.jpg">
+
+	<meta property="og:locale" content="en_AU">
+	<meta property="article:author" content="Arusha Shahi">
+
+	<!-- External CSS -->
+	<link rel="stylesheet" href="../../assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="../../assets/css/themify-icons.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../assets/css/colors.css">
+	<link rel="stylesheet" href="../../assets/css/responsive.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/vs2015.min.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:500,600%7COpen+Sans%7CPoppins:400,500,600&display=swap" rel="stylesheet">
+
+	<!-- Favicon -->
+	<link rel="icon" href="../../assets/img/favicon.ico">
+
+	<!-- Share buttons -->
+	 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=69c1c0dc92271d51b0a66b1e&product=sop' async='async'></script>
+</head>
+<body>
+
+	<!-- ========== Header ========== -->
+
+	<header class="main-header">
+
+		<div class="container">
+
+			<a href="../../index.html">
+				<img src="../../assets/img/logo.svg" class="logo" alt="Arusha Shahi">
+			</a>
+
+			<a href="#" class="open-nav">
+				<i></i>
+			</a>
+
+			<div class="clearfix"></div>
+
+		</div> <!-- /.container -->
+
+	</header> <!-- /.main-header -->
+
+
+	<!-- ========== Main ========== -->
+
+	<main class="single-project blog-template blog-template--tutorial">
+
+		<div class="container">
+			
+			<div class="intro">
+				
+				<h1>Building Multi-Model Gradio UIs with Multi-Model Streaming</h1>
+				
+				<ul>
+					<li>By Arusha Shahi</li>
+				</ul>
+
+				<p>I wanted one brochure tool that could run on a local Ollama model when I cared about privacy, and switch to Gemini’s free cloud models when I wanted speed — without shipping two apps. Here’s how I built a multi-model Gradio UI with multi-model streaming.</p>
+				<div class="clearfix"></div>
+
+			</div> <!-- /.intro -->
+
+			<div class="tutorial-media tutorial-media--hero">
+				<img src="../../assets/img/brochure-generator/hero-landscape.jpg" alt="Brochure Generator overview" class="img-cover">
+			</div> 
+
+			<div class="info">
+				<h3 id="idea">The idea</h3>
+				<p>Brochure Generator takes a company name and landing page URL, then drafts brochure-style markdown. The interesting part is the provider switch: the same form streams from <strong>Ollama</strong> or <strong>Gemini</strong>, and the user can stop generation mid-stream.</p>
+				<p>Live demo: <a href="https://78c25adeb4508572cf.gradio.live" target="_blank" rel="noopener noreferrer">Brochure Generator on Gradio</a>.</p>
+			</div>
+
+			<div class="info">
+				<h3 id="step-1">Step 1: One form, two providers</h3>
+				<p>Keep the UI small. Three inputs are enough:</p>
+				<ul>
+					<li>Company name</li>
+					<li>Landing page URL (with <code>http://</code> or <code>https://</code>)</li>
+					<li>Model dropdown: <code>Ollama</code> or <code>Gemini</code></li>
+				</ul>
+				<p>Gradio’s <code>Interface</code> (or Blocks with the same inputs) becomes a single contract. The front end never needs to know how each provider streams — only that the backend yields text.</p>
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/brochure-generator/01-ui.png" alt="Brochure Generator Gradio form with Ollama selected" class="img-cover">
+			</div>
+
+			<div class="code-block">
+				<pre><code class="language-python">import gradio as gr
+
+def stream_brochure(company_name: str, url: str, model: str = "Ollama"):
+    """Yield growing markdown so Gradio can stream the response."""
+    prompt = build_brochure_prompt(company_name, url)
+
+    if model == "Gemini":
+        yield from stream_gemini(prompt)
+    else:
+        yield from stream_ollama(prompt)
+
+demo = gr.Interface(
+    fn=stream_brochure,
+    inputs=[
+        gr.Textbox(label="Company name:"),
+        gr.Textbox(label="Landing page URL including http:// or https://"),
+        gr.Dropdown(choices=["Ollama", "Gemini"], value="Ollama", label="Select model"),
+    ],
+    outputs=gr.Markdown(label="Response:"),
+    examples=[
+        ["Hugging Face", "https://huggingface.co", "Ollama"],
+        ["Edward Donner", "https://edwarddonner.com", "Gemini"],
+    ],
+    title="Brochure Generator",
+)
+
+demo.launch()
+</code></pre>
+			</div>
+
+			<div class="info">
+				<h3 id="step-2">Step 2: Treat both models as generators</h3>
+				<p>Multi-model streaming works best when every provider speaks the same shape: a Python generator that yields partial strings. Gradio’s queue then updates the Markdown component as tokens arrive (SSE under the hood).</p>
+				<p>Locally, Ollama can stream chat completions. In the cloud, Gemini’s free-tier client can stream chunks the same way. Your UI code stays identical.</p>
+			</div>
+
+			<div class="code-block">
+				<pre><code class="language-python">def stream_ollama(prompt: str):
+    accumulated = ""
+    for chunk in ollama_chat_stream(prompt):
+        accumulated += chunk
+        yield accumulated
+
+def stream_gemini(prompt: str):
+    accumulated = ""
+    for chunk in gemini_generate_stream(prompt):
+        accumulated += chunk
+        yield accumulated
+</code></pre>
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/brochure-generator/02-streaming.jpg" alt="Brochure response streaming live in Gradio" class="img-cover">
+			</div>
+
+			<div class="info">
+				<h3 id="step-3">Step 3: Add Submit, Stop, and Clear</h3>
+				<p>Long brochure drafts need control. Gradio’s queue behaviour plus a Stop action lets users cancel an in-flight stream. Clear resets company name, URL, model choice, and the response pane so the next demo starts clean.</p>
+				<p>That combination — stream, stop, clear — is what makes a multi-model UI feel like a product, not a notebook cell.</p>
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/brochure-generator/03-output.png" alt="Generated Hugging Face brochure output from Ollama" class="img-cover">
+			</div>
+
+			<div class="info">
+				<h3 id="step-4">Step 4: Why multi-model matters</h3>
+				<ul>
+					<li><strong>Ollama</strong> — run offline or keep sensitive URLs on your machine.</li>
+					<li><strong>Gemini free models</strong> — quick cloud inference when local hardware is busy.</li>
+					<li><strong>One Gradio surface</strong> — compare outputs without rewriting prompts or layouts.</li>
+				</ul>
+				<p>The brochure app is a small example, but the pattern scales: chatbots, summarizers, and research tools can all share one streaming UI with a provider switch.</p>
+			</div>
+
+			<div class="info">
+				<h3 id="result">The result</h3>
+				<p>By designing around a shared streaming function and a simple Gradio form, I got a Brochure Generator that feels responsive on both Ollama and Gemini. Same inputs, same markdown output, live tokens either way.</p>
+				<p>If you’re building AI demos, start with one UI and make every model a generator. The rest — examples, stop buttons, and hosting on Gradio — falls into place.</p>
+			</div>
+
+		</div> <!-- /.container -->
+
+		<footer class="blog-footer">
+			<a href="a-guide-to-monitor-smfc-automations.html" class="next-post-btn">
+				<span class="btn-label">Next Post</span>
+				<h3>A Guide to Monitor SFMC Automations &rarr;</h3>
+			</a>
+		</footer>
+
+	</main> <!-- /.single-project -->
+
+	<div class="aside-navigation-overlay">
+		
+		<div class="aside-navigation">
+			
+			<a href="#" class="close-nav"><i class="ti-close"></i></a>
+
+			<nav>
+				<ul>
+					<li><a href="../../index.html">home</a></li>
+					<li><a href="../about.html">about</a></li>
+					<li><a href="../portfolio.html">portfolio</a></li>
+					<li><a href="../blog.html">blog</a></li>
+					<li><a href="../contact.html">contact</a></li>
+				</ul>
+			</nav>
+
+			<ul class="social-icons">
+				<li><a href="https://github.com/aarusa" target="_blank"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/shahiarusha" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+				<li><a href="https://www.instagram.com/aarusa__/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+			</ul>
+	
+		</div> <!-- /.aside-navigation -->
+
+	</div> <!-- /.aside-navigation-overlay -->
+
+	<script src="../../assets/js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+</body>
+</html>

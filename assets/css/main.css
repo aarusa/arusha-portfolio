@@ -1008,6 +1008,11 @@ a {
 	max-width: 860px;
 }
 
+.blog-template--tutorial .tutorial-media--hero img {
+	height: auto;
+	object-fit: contain;
+}
+
 .blog-template--tutorial .info {
 	margin: 55px auto 18px auto;
 	width: 100%;

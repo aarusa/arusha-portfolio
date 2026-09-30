@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-EFNPQ7K1HB"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-EFNPQ7K1HB');
+	</script>
+
+	<!-- Metas -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>Brochure Generator | Arusha Shahi</title>
+	<meta name="title" content="Brochure Generator | Arusha Shahi">
+	<meta name="description" content="An AI Brochure Generator built with Gradio, streaming from Ollama and Gemini free models in one multi-model UI.">
+
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://arusha.com.np/pages/portfolio/brochure-generator.html">
+	<meta property="og:title" content="Brochure Generator | Arusha Shahi">
+	<meta property="og:description" content="Build company brochures from a landing page URL — switch between Ollama and Gemini, and watch the response stream live.">
+	<meta property="og:image" content="https://arusha.com.np/assets/img/brochure-generator.jpg">
+
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://arusha.com.np/pages/portfolio/brochure-generator.html">
+	<meta property="twitter:title" content="Brochure Generator | Arusha Shahi">
+	<meta property="twitter:description" content="Build company brochures from a landing page URL — switch between Ollama and Gemini, and watch the response stream live.">
+	<meta property="twitter:image" content="https://arusha.com.np/assets/img/brochure-generator.jpg">
+
+	<meta property="og:locale" content="en_AU">
+	<meta property="article:author" content="Arusha Shahi">
+
+	<!-- External CSS -->
+	<link rel="stylesheet" href="../../assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="../../assets/css/themify-icons.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../assets/css/colors.css">
+	<link rel="stylesheet" href="../../assets/css/responsive.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/vs2015.min.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:500,600%7COpen+Sans%7CPoppins:400,500,600&display=swap" rel="stylesheet">
+
+	<!-- Favicon -->
+	<link rel="icon" href="../../assets/img/favicon.ico">
+</head>
+<body>
+
+	<!-- ========== Header ========== -->
+
+	<header class="main-header">
+
+		<div class="container">
+
+			<a href="../../index.html">
+				<img src="../../assets/img/logo.svg" class="logo" alt="Arusha Shahi">
+			</a>
+
+			<a href="#" class="open-nav">
+				<i></i>
+			</a>
+
+			<div class="clearfix"></div>
+
+		</div> <!-- /.container -->
+
+	</header> <!-- /.main-header -->
+
+
+	<!-- ========== Main ========== -->
+
+	<main class="single-project blog-template blog-template--tutorial">
+
+		<div class="container">
+			
+			<div class="intro">
+				
+				<h1>Brochure Generator</h1>
+
+				<ul>
+					<li>gradio</li>
+					<li>ollama</li>
+					<li>gemini</li>
+					<li>multi-model streaming</li>
+				</ul>
+
+				<p>Brochure Generator turns a company name and landing page URL into a polished brochure draft — with one Gradio UI that streams from either a local Ollama model or Gemini’s free cloud models.</p>
+
+				<div class="clearfix"></div>
+
+			</div> <!-- /.intro -->
+
+			<div class="tutorial-media tutorial-media--hero">
+				<img src="../../assets/img/brochure-generator/hero-landscape.jpg" alt="Brochure Generator project visual" class="img-cover">
+			</div>
+
+			<div class="info">
+				<h3>The challenge</h3>
+				<p>The hard part was not wiring two APIs — it was designing one interface where users can switch providers, submit or stop mid-stream, and watch markdown appear token by token. A shared <code>stream_brochure</code> generator keeps the UX identical while the backend routes to Ollama or Gemini.</p>
+			</div>
+
+			<div class="info">
+				<h3>One form, two providers</h3>
+				<p>Inputs stay deliberately simple: company name, website URL, and a model dropdown. Example presets (Hugging Face on Ollama, Edward Donner on Gemini) make it easy to try both paths. Clear / Submit / Stop controls keep long generations under control.</p>
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/brochure-generator/01-ui.png" alt="Brochure Generator Gradio UI with model selector" class="img-cover">
+			</div>
+
+			<div class="info">
+				<h3>Gradio interface</h3>
+				<p>Gradio’s <code>Interface</code> becomes the shared contract. The front end never needs to know how each provider streams — only that the backend yields growing markdown.</p>
+			</div>
+
+			<div class="code-block">
+				<pre><code class="language-python">import gradio as gr
+
+def stream_brochure(company_name: str, url: str, model: str = "Ollama"):
+    """Yield growing markdown so Gradio can stream the response."""
+    prompt = build_brochure_prompt(company_name, url)
+
+    if model == "Gemini":
+        yield from stream_gemini(prompt)
+    else:
+        yield from stream_ollama(prompt)
+
+demo = gr.Interface(
+    fn=stream_brochure,
+    inputs=[
+        gr.Textbox(label="Company name:"),
+        gr.Textbox(label="Landing page URL including http:// or https://"),
+        gr.Dropdown(
+            choices=["Ollama", "Gemini"],
+            value="Ollama",
+            label="Select model",
+        ),
+    ],
+    outputs=gr.Markdown(label="Response:"),
+    examples=[
+        ["Hugging Face", "https://huggingface.co", "Ollama"],
+        ["Edward Donner", "https://edwarddonner.com", "Gemini"],
+    ],
+    title="Brochure Generator",
+)
+
+demo.launch()
+</code></pre>
+			</div>
+
+			<div class="info">
+				<h3>Multi-model streaming</h3>
+				<p>Every provider speaks the same shape: a Python generator that yields partial strings. Gradio’s queue updates the Markdown panel over SSE as tokens arrive — whether the model runs locally or in the cloud.</p>
+			</div>
+
+			<div class="code-block">
+				<pre><code class="language-python">def stream_ollama(prompt: str):
+    accumulated = ""
+    for chunk in ollama_chat_stream(prompt):
+        accumulated += chunk
+        yield accumulated
+
+def stream_gemini(prompt: str):
+    accumulated = ""
+    for chunk in gemini_generate_stream(prompt):
+        accumulated += chunk
+        yield accumulated
+</code></pre>
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/brochure-generator/02-streaming.jpg" alt="Brochure response streaming in the Gradio UI" class="img-cover">
+			</div>
+
+			<div class="info">
+				<h3>Generated brochure output</h3>
+				<p>Submit a company and URL, pick Ollama or Gemini, and the response panel fills with structured brochure copy — overview, solutions, and enterprise messaging — ready to edit or ship.</p>
+			</div>
+
+			<div class="tutorial-media">
+				<img src="../../assets/img/brochure-generator/03-output.png" alt="Hugging Face brochure generated with Ollama" class="img-cover">
+			</div>
+
+			<div class="info">
+				<h3>Why multi-model</h3>
+				<ul>
+					<li><strong>Ollama</strong> — run offline or keep sensitive URLs on your machine.</li>
+					<li><strong>Gemini free models</strong> — quick cloud inference when local hardware is busy.</li>
+					<li><strong>One Gradio surface</strong> — compare outputs without rebuilding the UI twice.</li>
+				</ul>
+			</div>
+
+			<div class="cta">
+				<h1>Try the live demo</h1>
+				<a href="https://78c25adeb4508572cf.gradio.live" target="_blank" class="btn">view project</a>
+			</div>
+
+		</div> <!-- /.container -->
+
+	</main> <!-- /.single-project -->
+
+	<footer class="footer-default footer-default-border">
+
+		<div class="container">
+
+			<p class="copyright"><i class="far fa-copyright"></i> 2026 Arusha Shahi. all rights reserved</p>
+
+			<ul class="follow-us-links">
+				<li><a href="https://github.com/aarusa" target="_blank"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/shahiarusha" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+				<li><a href="https://www.instagram.com/aarusa__/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+			</ul> 
+
+			<div class="clearfix"></div>
+
+		</div> <!-- /.container -->
+
+	</footer> <!-- /.footer-default -->
+
+	<div class="aside-navigation-overlay">
+		
+		<div class="aside-navigation">
+			
+			<a href="#" class="close-nav"><i class="ti-close"></i></a>
+
+			<nav>
+				<ul>
+					<li><a href="../../index.html">home</a></li>
+					<li><a href="../about.html">about</a></li>
+					<li><a href="../portfolio.html">portfolio</a></li>
+					<li><a href="../blog.html">blog</a></li>
+					<li><a href="../contact.html">contact</a></li>
+				</ul>
+			</nav>
+
+			<ul class="social-icons">
+				<li><a href="https://github.com/aarusa" target="_blank"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/shahiarusha" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+				<li><a href="https://www.instagram.com/aarusa__/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+			</ul>
+	
+		</div> <!-- /.aside-navigation -->
+
+	</div> <!-- /.aside-navigation-overlay -->
+
+	<script src="../../assets/js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+</body>
+</html>
